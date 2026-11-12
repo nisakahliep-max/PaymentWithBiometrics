@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "PaymentWithBiometrics",
+    "name": "BioPay",
     "slug": "PaymentWithBiometrics",
-    "scheme": "paymentwithbiometrics",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "paymentwithbiometrics",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nisakahliep.paymentwithbiometrics"
     },
     "android": {
+      "package": "com.nisakahliep.paymentwithbiometrics",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -25,8 +27,28 @@
     "plugins": [
       "expo-router",
       "expo-status-bar",
-      "expo-secure-store",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "BioPay uses Face ID to confirm that you are the one authorising each transfer."
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "BioPay uses Face ID to confirm that you are the one authorising each transfer."
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "BioPay reads the contact you pick so you can send money to their mobile number."
+        }
+      ],
       "expo-font"
-    ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
   }
 }
