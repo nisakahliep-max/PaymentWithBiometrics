@@ -4,7 +4,24 @@ A small payment-transfer module for a Malaysian digital bank, built with Expo an
 
 The bank is mocked inside the app, but it behaves like a real one: it has latency, it can time out, it can return server errors, and it handles retries safely.
 
-**Demo video:** _coming soon_
+## Demo
+
+Recorded on the Android emulator (Pixel 8 Pro, API 36).
+
+**Normal transfer with fingerprint**
+
+https://github.com/user-attachments/assets/f407022f-a51c-4ec8-88c8-b03782e46f25
+
+**Using the PIN instead**
+
+https://github.com/user-attachments/assets/f7453c94-9ac1-4891-bd38-ee1f13f4b34f
+
+**Wrong PIN, locked after 5 attempts**
+
+https://github.com/user-attachments/assets/2d3caa4e-3643-4f5b-9198-9e0466516aee
+
+**Why part of the video is black.** The review screen turns on screen-capture protection (`useSecureScreen`, which wraps `usePreventScreenCapture` from expo-screen-capture). Android then blanks that screen in any recording or screenshot. That covers the transfer details, the fingerprint prompt and the PIN sheet. So the video goes dark from the moment I tap **Continue** until the success screen appears. That's the security feature doing its job, not a bug. To see the full flow, run the app and follow [Trying the biometrics](#trying-the-biometrics).
+
 **Why it's built this way:** [DESIGN.md](./DESIGN.md)
 
 ## What it does
@@ -71,10 +88,15 @@ To see the Touch ID version, use an iPhone SE simulator and **Features → Touch
 On Android:
 
 1. In the emulator's settings, set a screen lock and add a fingerprint.
-2. When the prompt appears, run `adb -e emu finger touch 1`.
+2. When the prompt appears, run `adb -e emu finger touch 1`, or use **Extended controls → Fingerprint → Touch Sensor**:
+
+   <img width="642" height="935" alt="Extended" src="https://github.com/user-attachments/assets/1a72f02a-d4f3-49d6-bd93-a5b3937be828" />
+
 3. The **Use PIN instead** button opens the app's PIN sheet.
 
-I've done most of my testing on iOS.
+
+I tested on the Android emulator. The iOS build currently fails on Xcode 26.3: its Swift 6.2 compiler flags a concurrency error inside Expo's own `expo-modules-jsi` package, and there's no SDK 58 patch for it yet. An older Xcode should build it.
+
 
 ## Making things go wrong on purpose
 
