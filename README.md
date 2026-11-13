@@ -4,7 +4,12 @@ A small payment-transfer module for a Malaysian digital bank, built with Expo an
 
 The bank is mocked inside the app, but it behaves like a real one: it has latency, it can time out, it can return server errors, and it handles retries safely.
 
+
+
 ## Demo
+
+**Try it on Android:** [download the APK](https://github.com/nisakahliep-max/PaymentWithBiometrics/releases/latest/download/BioPay-v1.0.0.apk). There's no build step; see [Quickest way to try it](#quickest-way-to-try-it).
+
 
 Recorded on the Android emulator (Pixel 8 Pro, API 36).
 
@@ -42,6 +47,18 @@ https://github.com/user-attachments/assets/2d3caa4e-3643-4f5b-9198-9e0466516aee
 - FlashList 2 for long lists and Reanimated 4 for animation
 - Expo modules for local authentication, secure storage, contacts, crypto, screen capture and haptics
 - Jest with jest-expo for tests
+
+
+## Quickest way to try it
+
+If you have an Android phone or emulator, you don't need to build anything.
+
+1. Download **BioPay-v1.0.0.apk** from the [latest release](https://github.com/nisakahliep-max/PaymentWithBiometrics/releases/latest). On an emulator, drag the file onto the emulator window instead.
+2. Tap **Install**. It's a test build signed with a debug key, so Android may ask you to allow installs from your browser, and Play Protect may say it doesn't recognise the app. Tap **Install anyway**.
+3. To try the fingerprint, the device needs a screen lock and an enrolled fingerprint (see [Trying the biometrics](#trying-the-biometrics)). Without one, the app asks you to create a transaction PIN instead.
+
+There's no iOS download. Installing outside the App Store needs an Apple Developer account and TestFlight. To run it on iOS, build it yourself (below) and read the note about Xcode 26.3.
+
 
 ## Running it
 
